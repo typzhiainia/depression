@@ -34,7 +34,7 @@ require_once 'assessments.php';
 <section class="hero">
     <div class="wrap">
         <div class="hero-inner">
-            <div class="hero-tag">免费 · 匿名 · 即时出结果</div>
+            <div class="hero-tag">免费 &middot; 匿名 &middot; 即时出结果</div>
             <h1>花几分钟，<br>了解一下自己的状态</h1>
             <p>基于国际通用的心理量表，帮你快速了解情绪、压力等维度。结果仅供参考，不构成医疗诊断。</p>
             <div class="hero-actions">
@@ -45,6 +45,22 @@ require_once 'assessments.php';
                 <div><strong id="statTotal">--</strong><span>累计测评</span></div>
                 <div><strong id="statToday">--</strong><span>今日完成</span></div>
                 <div><strong><?php echo count(AssessmentManager::getAllAssessments()); ?></strong><span>可用量表</span></div>
+            </div>
+        </div>
+
+        <!-- Floating decorative cards -->
+        <div class="hero-decor">
+            <div class="hero-card hero-card-1">
+                <div class="hc-icon">🧠</div>
+                <div class="hc-label">PHQ-9 抑郁评估</div>
+                <div class="hc-value">9 题 / 27 分</div>
+                <div class="hc-bar"><div class="hc-fill" style="width:72%"></div></div>
+            </div>
+            <div class="hero-card hero-card-2">
+                <div class="hc-icon">😌</div>
+                <div class="hc-label">GAD-7 焦虑筛查</div>
+                <div class="hc-value">7 题 / 21 分</div>
+                <div class="hc-bar"><div class="hc-fill" style="width:56%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
             </div>
         </div>
     </div>
@@ -84,7 +100,7 @@ require_once 'assessments.php';
         <div class="about-grid">
             <div class="about-text">
                 <h2 class="section-header h2">关于这个工具</h2>
-                <p style="margin-bottom:14px;font-size:14px;color:var(--sub);line-height:1.7;">这是一个基于国际通用量表构建的自我评估平台。我们提供经过科学验证的心理学量表，帮助用户了解自身心理状态的参考信息。</p>
+                <p style="margin-bottom:16px;font-size:15px;color:var(--text-body);line-height:1.7;">这是一个基于国际通用量表构建的自我评估平台。我们提供经过科学验证的心理学量表，帮助用户了解自身心理状态的参考信息。</p>
                 <ul class="about-list">
                     <li>量表来自国际公认的心理研究文献</li>
                     <li>完全匿名，不收集个人身份信息</li>
