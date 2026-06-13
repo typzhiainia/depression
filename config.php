@@ -19,7 +19,27 @@ ini_set('display_errors', 1);
 ini_set('session.save_handler', 'files');
 ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 0);          // 开发环境为0，生产环境改为1（需HTTPS）
+ini_set('session.cookie_samesite', 'Strict'); // 防 iframe 嵌套劫持
 ini_set('session.use_strict_mode', 1);
+ini_set('session.gc_maxlifetime', 7200);      // 2小时会话过期
+
+// ========== CSRF Token 系统 ==========
+}
+
+function csrf_field() {
+    return '<input type="hidden" name="csrf_token" value="' . csrf_token() . '">';
+}
+
+function csrf_verify($token = null) {
+    if ($token === null) {
+        $token = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+    }
+    if (empty($token) || empty($_SESSION['csrf_token'])) {
+        return false;
+    }
+    return hash_equals($_SESSION['csrf_token'], $token);
+}
 
 // 确保 data 目录存在（用于存放数据库和session）
 if (!file_exists(__DIR__ . '/data')) {
@@ -42,8 +62,8 @@ class Database {
         try {
             $this->connection = new PDO('sqlite:' . DB_FILE);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            
+            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::ATTR_ASSOC);
+
             // 启用外键约束（SQLite默认关闭）
             $this->connection->exec('PRAGMA foreign_keys = ON');
         } catch (PDOException $e) {
@@ -58,10 +78,6 @@ class Database {
         return self::$instance;
     }
 
-    /**
-     * 获取当前本地时间字符串（兼容 SQLite 时区差异）
-     * SQLite 的 DEFAULT CURRENT_TIMESTAMP 用的是 UTC，此方法返回 Asia/Shanghai 本地时间
-     */
     public static function now() {
         return date('Y-m-d H:i:s');
     }
@@ -70,7 +86,6 @@ class Database {
         return $this->connection;
     }
 
-    // 防止克隆
     private function __clone() {}
 }
 
@@ -96,30 +111,27 @@ function json_response($data, $status = 200) {
 }
 
 function is_ajax_request() {
-    return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+    return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
 
 /**
  * 获取客户端真实 IP 地址
- * 支持反向代理场景：X-Forwarded-For, X-Real-IP, CF-Connecting-IP 等
  */
 function get_real_ip() {
     $ipHeaders = [
-        'HTTP_CF_CONNECTING_IP',    // Cloudflare
-        'HTTP_X_FORWARDED_FOR',     // Nginx / 通用代理
-        'HTTP_X_REAL_IP',           // Nginx
-        'HTTP_CLIENT_IP',           // 部分代理
-        'HTTP_FORWARDED',           // RFC 7239 标准
-        'REMOTE_ADDR'               // 直接连接时的 fallback
+        'HTTP_CF_CONNECTING_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_REAL_IP',
+        'HTTP_CLIENT_IP',
+        'HTTP_FORWARDED',
+        'REMOTE_ADDR'
     ];
 
     foreach ($ipHeaders as $header) {
         if (!empty($_SERVER[$header])) {
             $ips = explode(',', $_SERVER[$header]);
             $ip = trim($ips[0]);
-
-            // 校验是否为合法 IPv4/IPv6
             if (filter_var($ip, FILTER_VALIDATE_IP)) {
                 return $ip;
             }
@@ -147,4 +159,3 @@ function admin_logout() {
     unset($_SESSION[ADMIN_SESSION_KEY]);
     session_regenerate_id(true);
 }
-?>

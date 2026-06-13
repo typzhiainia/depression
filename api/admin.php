@@ -4,14 +4,30 @@
  */
 require_once '../config.php';
 
+// 启动 session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // 设置响应头
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-CSRF-Token');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
+}
+
+// CSRF 校验：login 和 logout 除外（login 尚无 session，logout 为 GET）
+$action = $_POST['action'] ?? $_GET['action'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !in_array($action, ['login', 'logout'])) {
+    $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['csrf_token'] ?? '';
+    if (!csrf_verify($csrfToken)) {
+        http_response_code(403);
+        echo json_encode(['success' => false, 'message' => 'CSRF validation failed']);
+        exit;
+    }
 }
 
 // 统一响应格式
@@ -264,9 +280,10 @@ switch ($action) {
                 $params[] = $assessmentType;
             }
             if (!empty($search)) {
+                $safeSearch = addcslashes($search, '%_\\');
                 $where .= " AND (severity_level LIKE ? OR user_ip LIKE ?)";
-                $params[] = "%$search%";
-                $params[] = "%$search%";
+                $params[] = "%{$safeSearch}%";
+                $params[] = "%{$safeSearch}%";
             }
             
             $countSql = "SELECT COUNT(*) as total FROM test_records {$where}";

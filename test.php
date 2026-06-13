@@ -38,7 +38,8 @@ $questionCount = count($questions);
     <!-- Question Card -->
     <main class="test-container">
         <form id="testForm" action="" method="post">
-            <input type="hidden" name="assessment_type" value="<?php echo $assessmentType; ?>">
+            <input type="hidden" name="assessment_type" value="<?php echo htmlspecialchars($assessmentType); ?>">
+            <?php echo csrf_field(); ?>
             
             <?php foreach ($questions as $idx => $q): ?>
             <div class="question-block <?php echo $idx === 0 ? 'active' : ''; ?>" data-question="<?php echo $idx + 1; ?>">
@@ -153,8 +154,11 @@ $questionCount = count($questions);
             try {
                 const res = await fetch('api/public.php?action=submit_assessment', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: 'assessment_type=<?php echo $assessmentType; ?>&answers=' + JSON.stringify(answers) + '&duration=' + duration
+                    headers: { 
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRF-Token': '<?php echo csrf_token(); ?>'
+                    },
+                    body: 'assessment_type=<?php echo json_encode($assessmentType); ?>&answers=' + JSON.stringify(answers) + '&duration=' + duration + '&csrf_token=<?php echo csrf_token(); ?>'
                 });
                 const json = await res.json();
                 if (json.success) {

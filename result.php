@@ -17,6 +17,10 @@ $assessmentType = $_SESSION['last_assessment_type'] ?? 'phq9';
 $assessmentConfig = AssessmentManager::getAssessment($assessmentType);
 $recordId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $levelColor = $result['level_color'] ?? '#6366F1';
+// 安全：强制校验颜色格式，防止 CSS 注入
+if (!preg_match('/^#[0-9a-fA-F]{6}$/', $levelColor)) {
+    $levelColor = '#6366F1';
+}
 $assessmentName = $result['assessment_name'] ?? ($assessmentConfig ? $assessmentConfig['full_name'] : '心理健康测评');
 ?>
 <!DOCTYPE html>

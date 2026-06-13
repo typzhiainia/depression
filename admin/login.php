@@ -7,37 +7,57 @@ if (is_admin_logged_in()) {
     exit;
 }
 
+// ========== 防暴力破解：基于 Session 的速率限制 ==========
+$MAX_ATTEMPTS = 5;
+$LOCKOUT_TIME = 900;
+$_SESSION['login_attempts'] = $_SESSION['login_attempts'] ?? 0;
+$_SESSION['login_lockout'] = $_SESSION['login_lockout'] ?? 0;
+
+$isLocked = ($_SESSION['login_attempts'] >= $MAX_ATTEMPTS) && (time() - $_SESSION['login_lockout'] < $LOCKOUT_TIME);
+$remainingTime = $isLocked ? ($LOCKOUT_TIME - (time() - $_SESSION['login_lockout'])) : 0;
+
 $error = '';
-$showForm = true;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
-    
-    if ($username === '' || $password === '') {
-        $error = '请输入用户名和密码';
+    if ($isLocked) {
+        $error = '登录尝试次数过多，请 ' . ceil($remainingTime / 60) . ' 分钟后再试。';
     } else {
-        $stmt = db()->prepare("SELECT id, username, password_hash, display_name, is_active FROM admins WHERE username = ?");
-        $stmt->execute([$username]);
-        $admin = $stmt->fetch();
-        
-        if (!$admin) {
-            $error = '用户名或密码错误';
-        } elseif (!password_verify($password, $admin['password_hash'])) {
-            $error = '用户名或密码错误';
-        } elseif (!$admin['is_active']) {
-            $error = '该账户已被禁用';
+        $username = trim($_POST['username'] ?? '');
+        $password = $_POST['password'] ?? '';
+
+        if ($username === '' || $password === '') {
+            $error = '请输入用户名和密码';
         } else {
-            // 登录成功
-            db()->prepare("UPDATE admins SET last_login_at = datetime('now', 'localtime') WHERE id = ?")->execute([$admin['id']]);
-            
-            $_SESSION[ADMIN_SESSION_KEY] = true;
-            $_SESSION['admin_id'] = $admin['id'];
-            $_SESSION['admin_username'] = $admin['username'];
-            $_SESSION['admin_display_name'] = $admin['display_name'];
-            
-            header('Location: index.php');
-            exit;
+            $stmt = db()->prepare("SELECT id, username, password_hash, display_name, is_active FROM admins WHERE username = ?");
+            $stmt->execute([$username]);
+            $admin = $stmt->fetch();
+
+            if (!$admin) {
+                $error = '用户名或密码错误';
+                $_SESSION['login_attempts']++;
+                if ($_SESSION['login_attempts'] >= $MAX_ATTEMPTS) {
+                    $_SESSION['login_lockout'] = time();
+                }
+            } elseif (!password_verify($password, $admin['password_hash'])) {
+                $error = '用户名或密码错误';
+                $_SESSION['login_attempts']++;
+                if ($_SESSION['login_attempts'] >= $MAX_ATTEMPTS) {
+                    $_SESSION['login_lockout'] = time();
+                }
+            } elseif (!$admin['is_active']) {
+                $error = '该账户已被禁用';
+            } else {
+                // 登录成功 — 重置尝试计数
+                $_SESSION['login_attempts'] = 0;
+                $_SESSION['login_lockout'] = 0;
+                db()->prepare("UPDATE admins SET last_login_at = datetime('now', 'localtime') WHERE id = ?")->execute([$admin['id']]);
+                $_SESSION[ADMIN_SESSION_KEY] = true;
+                $_SESSION['admin_id'] = $admin['id'];
+                $_SESSION['admin_username'] = $admin['username'];
+                $_SESSION['admin_display_name'] = $admin['display_name'];
+                header('Location: index.php');
+                exit;
+            }
         }
     }
 }
@@ -72,7 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .footer-link { text-align: center; margin-top: 28px; }
         .footer-link a { color: #9ca3af; text-decoration: none; font-size: 13px; transition: color 0.2s; }
         .footer-link a:hover { color: #6366f1; }
-        input[type="checkbox"] { accent-color: #6366f1; }
     </style>
 </head>
 <body>
@@ -83,7 +102,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>MindCheck Admin Panel</p>
         </div>
         <div class="login-body">
-            <?php if ($error): ?>
+            <?php if ($isLocked && $error): ?>
+                <div class="error-box" style="border-left-color:#f59e0b;background:#fffbeb;color:#92400e;">
+                    <?php echo htmlspecialchars($error); ?>
+                    <div style="margin-top:8px;font-size:12px;opacity:0.8;">剩余等待时间：<strong id="lockoutTimer"><?php echo ceil($remainingTime); ?></strong> 秒</div>
+                </div>
+            <?php elseif ($error): ?>
                 <div class="error-box"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
             <form method="post" action="">
@@ -98,13 +122,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" class="btn-login">登 录</button>
             </form>
             <div class="footer-link">
-                <a href="../index.php">← 返回网站首页</a>
+                <a href="../index.php">&larr; 返回网站首页</a>
             </div>
         </div>
     </div>
 
     <script>
-        // Enter 键提交
+        (function(){
+            var timer = document.getElementById('lockoutTimer');
+            if(!timer) return;
+            var sec = parseInt(timer.textContent);
+            if(sec<=0) return;
+            setInterval(function(){
+                sec--;
+                if(sec<=0){ location.reload(); return; }
+                timer.textContent = sec;
+            }, 1000);
+        })();
+
         document.querySelector('.form-input').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') e.target.closest('form').submit();
         });

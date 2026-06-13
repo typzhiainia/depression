@@ -5,13 +5,28 @@
 require_once '../config.php';
 require_once '../assessments.php';
 
+// 启动 session（CSRF token 需要）
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+header('Access-Control-Allow-Headers: Content-Type, X-Requested-With, X-CSRF-Token');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
+}
+
+// CSRF 校验：所有 POST 请求必须携带有效 token
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfToken = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? $_POST['csrf_token'] ?? '';
+    if (!csrf_verify($csrfToken)) {
+        http_response_code(403);
+        echo json_encode(['success' => false, 'message' => 'CSRF validation failed']);
+        exit;
+    }
 }
 
 $action = $_POST['action'] ?? $_GET['action'] ?? '';
@@ -143,8 +158,8 @@ switch ($action) {
                 $stmt = $db->prepare("SELECT id, total_score, severity_level, assessment_type, test_duration, created_at FROM test_records WHERE assessment_type = ? ORDER BY created_at DESC LIMIT ?");
                 $stmt->execute([$type, $limit]);
             } else {
-                $stmt = $db->prepare("SELECT id, total_score, severity_level, assessment_type, test_duration, created_at FROM test_records ORDER BY created_at DESC LIMIT {$limit}");
-                $stmt->execute([]);
+                $stmt = $db->prepare("SELECT id, total_score, severity_level, assessment_type, test_duration, created_at FROM test_records ORDER BY created_at DESC LIMIT ?");
+                $stmt->execute([$limit]);
             }
             $records = $stmt->fetchAll();
             

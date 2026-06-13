@@ -287,6 +287,7 @@ $displayName = $_SESSION['admin_display_name'] ?? $adminName;
 
     <script>
         const API_URL = 'api/admin.php';
+        const CSRF_TOKEN = '<?php echo csrf_token(); ?>';
 
         // ========== Page Load ==========
         document.addEventListener('DOMContentLoaded', () => {
@@ -347,8 +348,8 @@ $displayName = $_SESSION['admin_display_name'] ?? $adminName;
             try {
                 const res = await fetch(API_URL + '?action=get_records', {
                     method:'POST',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({page:1,page_size:20})
+                    headers:{'Content-Type':'application/json','X-CSRF-Token':CSRF_TOKEN},
+                    body:JSON.stringify({page:1,page_size:20,csrf_token:CSRF_TOKEN})
                 });
                 const json = await res.json();
                 if (json.success && json.data.records) {
@@ -409,7 +410,7 @@ $displayName = $_SESSION['admin_display_name'] ?? $adminName;
             if(!confirm('确定要删除这条记录吗？'))return;
             btn.textContent='...';btn.disabled=true;
             try{
-                const res=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'action=delete_record&id='+id});
+                const res=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','X-CSRF-Token':CSRF_TOKEN},body:'action=delete_record&id='+id+'&csrf_token='+CSRF_TOKEN});
                 const json=await res.json();
                 showToast(json.message,json.success?'success':'error');
                 if(json.success)loadRecords();
@@ -467,8 +468,8 @@ $displayName = $_SESSION['admin_display_name'] ?? $adminName;
             btn.disabled=true;btn.textContent='处理中...';
 
             try{
-                const res=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
-                    body:'action=change_password&current_password='+encodeURIComponent(cur)+'&new_password='+encodeURIComponent(nw)+'&confirm_password='+encodeURIComponent(conf)
+                const res=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded','X-CSRF-Token':CSRF_TOKEN},
+                    body:'action=change_password&current_password='+encodeURIComponent(cur)+'&new_password='+encodeURIComponent(nw)+'&confirm_password='+encodeURIComponent(conf)+'&csrf_token='+CSRF_TOKEN
                 });
                 const json=await res.json();
                 if(json.success){

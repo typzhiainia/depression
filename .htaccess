@@ -1,0 +1,30 @@
+# ========== 防止直接访问敏感文件 ==========
+<FilesMatch "\.(db|sqlite|sqlite3|sql|log|ini|conf|env|bak|old)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ========== 禁止访问 data 目录 ==========
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^data/ - [F,L]
+    RewriteRule ^api/ - [F,L]
+</IfModule>
+
+# ========== 禁止目录列表 ==========
+Options -Indexes
+
+# ========== 防止点击劫持 ==========
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# ========== MIME 类型嗅探防护 ==========
+Header always set X-Content-Type-Options "nosniff"
+
+# ========== XSS 防护 ==========
+Header always set X-XSS-Protection "1; mode=block"
+
+# ========== 引用策略 ==========
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# ========== 内容安全策略（宽松版，兼容大多数功能） ==========
+Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src 'self' data: blob:;"
