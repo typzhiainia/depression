@@ -30,17 +30,18 @@ require_once 'assessments.php';
     </div>
 </nav>
 
-<!-- Hero -->
+<!-- Hero — 非对称布局，视觉重心偏左偏上 -->
 <section class="hero">
     <div class="wrap">
         <div class="hero-inner">
-            <div class="hero-tag">免费 &middot; 匿名 &middot; 即时出结果</div>
-            <h1>花几分钟，<br>了解一下自己的状态</h1>
+            <div class="hero-tag">免费 · 匿名 · 即时出结果</div>
+            <h1>花几分钟<br>了解一下自己的状态</h1>
             <p>基于国际通用的心理量表，帮你快速了解情绪、压力等维度。结果仅供参考，不构成医疗诊断。</p>
             <div class="hero-actions">
                 <a href="#assessments" class="btn btn-primary btn-lg">选择量表开始</a>
                 <a href="#about" class="btn btn-outline btn-lg">了解更多</a>
             </div>
+            <!-- 统计数据：流动式分隔，不等宽分栏 -->
             <div class="hero-meta">
                 <div><strong id="statTotal">--</strong><span>累计测评</span></div>
                 <div><strong id="statToday">--</strong><span>今日完成</span></div>
@@ -78,13 +79,13 @@ require_once 'assessments.php';
     </div>
 </section>
 
-<!-- About -->
+<!-- About — 左重右轻不对称布局 -->
 <section class="section about-section" id="about">
     <div class="wrap">
         <div class="about-grid">
             <div class="about-text">
                 <h2 class="section-header h2">关于这个工具</h2>
-                <p style="margin-bottom:16px;font-size:15px;color:var(--t-2);line-height:1.7;">这是一个基于国际通用量表构建的自我评估平台。我们提供经过科学验证的心理学量表，帮助用户了解自身心理状态的参考信息。</p>
+                <p style="margin-bottom:18px;font-size:15px;color:var(--t-2);line-height:1.72;">这是一个基于国际通用量表构建的自我评估平台。我们提供经过科学验证的心理学量表，帮助用户了解自身心理状态的参考信息。</p>
                 <ul class="about-list">
                     <li>量表来自国际公认的心理研究文献</li>
                     <li>完全匿名，不收集个人身份信息</li>
