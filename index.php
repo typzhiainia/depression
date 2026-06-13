@@ -47,22 +47,6 @@ require_once 'assessments.php';
                 <div><strong><?php echo count(AssessmentManager::getAllAssessments()); ?></strong><span>可用量表</span></div>
             </div>
         </div>
-
-        <!-- Floating decorative cards -->
-        <div class="hero-decor">
-            <div class="hero-card hero-card-1">
-                <div class="hc-icon">🧠</div>
-                <div class="hc-label">PHQ-9 抑郁评估</div>
-                <div class="hc-value">9 题 / 27 分</div>
-                <div class="hc-bar"><div class="hc-fill" style="width:72%"></div></div>
-            </div>
-            <div class="hero-card hero-card-2">
-                <div class="hc-icon">😌</div>
-                <div class="hc-label">GAD-7 焦虑筛查</div>
-                <div class="hc-value">7 题 / 21 分</div>
-                <div class="hc-bar"><div class="hc-fill" style="width:56%;background:linear-gradient(90deg,#10b981,#34d399);"></div></div>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -100,7 +84,7 @@ require_once 'assessments.php';
         <div class="about-grid">
             <div class="about-text">
                 <h2 class="section-header h2">关于这个工具</h2>
-                <p style="margin-bottom:16px;font-size:15px;color:var(--text-body);line-height:1.7;">这是一个基于国际通用量表构建的自我评估平台。我们提供经过科学验证的心理学量表，帮助用户了解自身心理状态的参考信息。</p>
+                <p style="margin-bottom:16px;font-size:15px;color:var(--t-2);line-height:1.7;">这是一个基于国际通用量表构建的自我评估平台。我们提供经过科学验证的心理学量表，帮助用户了解自身心理状态的参考信息。</p>
                 <ul class="about-list">
                     <li>量表来自国际公认的心理研究文献</li>
                     <li>完全匿名，不收集个人身份信息</li>

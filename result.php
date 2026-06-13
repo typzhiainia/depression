@@ -137,44 +137,42 @@ $assessmentName = $result['assessment_name'] ?? ($assessmentConfig ? $assessment
                 <div class="hm-main-card hm-excellent">
                     <div class="hm-card-inner">
                         <div class="hm-badge">✨ 此刻的你</div>
-                        <h2 class="hm-title">看见你正在用心照顾自己</h2>
+                        <h2 class="hm-title">看起来状态不错</h2>
                         <p class="hm-text">
-                            你愿意花时间停下来，认真了解自己的内心状态——这件事本身就值得被认真对待。
-                            无论数字说了什么，<strong>那个愿意面对真实的你</strong>，已经做了一件很棒的事。
-                            测评不是审判，而是一次与自己安静对话的机会。
-                            你今天坐在这里阅读这段文字的样子，就是一个人在好好爱着自己的证明。
+                            你花了点时间来做这个测评，这本身就不算件随便的事。很多人会回避，但你没有。<br><br>
+                            分数就是分数，别太当回事。它顶多算个参考，就像天气预报说今天有雨不代表你出门一定会淋湿一样。<br><br>
+                            真正重要的东西——你的幽默感、你对待朋友的那个劲儿、你在某些事情上莫名其妙的执着——这些问卷根本测不出来。
                         </p>
                     </div>
                 </div>
                 <div class="hm-perspective">
                     <div class="hm-persp-icon">💭</div>
                     <div class="hm-persp-body">
-                        <h4>关于这个分数，想和你聊聊</h4>
+                        <h4>几个你可能没想过的事情</h4>
                         <ul>
-                            <li>这个测评只反映了<strong>特定时间段内、特定维度上</strong>的一个快照——就像天气，不等于气候。</li>
-                            <li>它无法衡量你的创造力、善良、幽默感，或者你在朋友眼中的温暖。</li>
-                            <li>今天的「好」不需要成为明天的负担。<strong>允许自己有起伏</strong>，本来就是生命力的一部分。</li>
-                            <li>你的全部潜能，远远超出任何一张问卷所能触及的范围。</li>
+                            <li>这个分数只是某个时间切面上的一张截图。你昨天可能感觉不一样，下周也可能不一样。人是活的，不是数据。</li>
+                            <li>"正常"这个词被用烂了。其实大部分人的内心世界都比表面上看起来要乱一些，只是没人说而已。</li>
+                            <li>如果你觉得一切都还行，那就挺好的。"挺好"本身就是一种被低估了的能力。</li>
                         </ul>
                     </div>
                 </div>
                 <div class="hm-glow-grid">
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">🌱</span>
-                        <div><strong>觉察力</strong><br>你已经拥有了最宝贵的能力——愿意关注自己。</div>
+                        <div><strong>觉察力</strong><br>愿意停下来看看自己的状态，这事说起来简单，真做到的人不多。</div>
                     </div>
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">🛡️</span>
-                        <div><strong>主动性</strong><br>主动寻求了解，而不是回避，这是勇气的体现。</div>
+                        <div><strong>不回避</strong><br>与其绕开问题走，不如正面看一眼。至少你现在知道了它长什么样。</div>
                     </div>
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">⭐</span>
-                        <div><strong>独特性</strong><br>没有任何一个分数可以定义你这个完整而丰富的人。</div>
+                        <div><strong>你是复杂的</strong><br>一张九道题的卷子，概括不了任何一个活生生的人。包括你。</div>
                     </div>
                 </div>
                 <div class="hm-promise">
                     <div class="hm-promise-label">💌 给自己的一份小约定</div>
-                    <p>今天做完这个测评之后，奖励自己做一件小小的喜欢的事吧——喝一杯热茶、听一首喜欢的歌、或者只是在窗前发一会儿呆。<strong>你值得这些温柔的瞬间。</strong></p>
+                    <p>做完测评了，去干点让自己舒服的事吧。倒杯水也行，听首歌也行，或者就坐在窗边发会儿呆。不用赋予它什么意义，就是歇一会儿。</p>
                 </div>
             </section>
 
@@ -183,45 +181,42 @@ $assessmentName = $result['assessment_name'] ?? ($assessmentConfig ? $assessment
                 <div class="hm-main-card hm-moderate">
                     <div class="hm-card-inner">
                         <div class="hm-badge">🌤 此刻的你</div>
-                        <h2 class="hm-title">没关系，我们都在这里陪你</h2>
+                        <h2 class="hm-title">嗯……有些东西在浮动</h2>
                         <p class="hm-text">
-                            如果此刻你觉得一切还好，但也说不清哪里有点不一样——那完全没问题。
-                            人生不是一条笔直向上的线，<strong>偶尔的云朵飘过，不代表太阳消失了</strong>。
-                            你能察觉到内心细微的变化，说明你对自己足够在意和敏感，
-                            这份敏锐本身就是一种天赋。不用急着给任何感受下结论，
-                            就像你不会因为一天多云就断定整个季节都是阴天一样。
+                            说不上哪里不对，但确实不太对劲——这种感觉挺烦人的吧？<br><br>
+                            好消息是：你能察觉到这些变化，说明你的感受系统还在正常工作。有些人会麻木掉，你没有。<br><br>
+                            不需要马上给这些感受定性。有时候情绪就是会这样，像天气一样，你没法控制它什么时候来，但你也知道它总会走的。
                         </p>
                     </div>
                 </div>
                 <div class="hm-perspective">
                     <div class="hm-persp-icon">🔍</div>
                     <div class="hm-persp-body">
-                        <h4>关于这个分数，想和你聊聊</h4>
+                        <h4>关于这个分数，说几句实在话</h4>
                         <ul>
-                            <li>这个测评捕捉到的，只是你生命中<strong>某一个切面</strong>的瞬间影像。你远比这更宽广。</li>
-                            <li>情绪像潮汐一样来去，<strong>感到一些波动是正常且健康的</strong>——说明你的内在感知在运作。</li>
-                            <li>不要把「平平」解读为「不够好」。<strong>稳定和平凡里藏着巨大的力量</strong>，那是很多人梦寐以求的状态。</li>
-                            <li>你的价值不依附于任何测评结果。你之所以珍贵，是因为你是你。</li>
+                            <li>这个分数落在中间地带。不是什么大问题，但也不代表可以完全忽略。它更像是身体在发一个温和的信号："嘿，注意一下这边。"</li>
+                            <li>情绪起伏是正常的生理反应。如果你最近睡得少了、压力大了、或者单纯是换季了，都会影响这个数字。</li>
+                            <li>不要把"中等"理解为"不够好"。世界上大部分时候，人就是在"还行"和"有点累"之间来回晃荡的。</li>
                         </ul>
                     </div>
                 </div>
                 <div class="hm-glow-grid">
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">🎨</span>
-                        <div><strong>敏感力</strong><br>你能感受到细腻的情绪变化，这是一种难得的内在智慧。</div>
+                        <div><strong>敏感不是坏事</strong><br>能感受到情绪的变化，意味着你对内在状态的感知比较细腻。这种能力用对了地方是优势。</div>
                     </div>
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">🪴</span>
-                        <div><strong>成长性</strong><br>每一次觉察都是土壤里的养分，滋养着未来的你。</div>
+                        <div><strong>有空间调整</strong><br>既然还没到严重的程度，那就有很多方法可以试。睡眠、运动、找人说说话，都可以慢慢来。</div>
                     </div>
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">🕊️</span>
-                        <div><strong>平衡感</strong><br>能在波动中保持基本稳定，说明你拥有很好的内在韧性基础。</div>
+                        <div><strong>基本盘还在</strong><br>你还在正常生活、工作、跟人打交道。这说明底子没坏，上面飘着的那些云，散得掉的。</div>
                     </div>
                 </div>
                 <div class="hm-promise">
                     <div class="hm-promise-label">💌 给自己的一份小约定</div>
-                    <p>今晚临睡前，试着回想今天发生的一件让你嘴角微微上扬的小事——哪怕只是路边一朵好看的花、一句温暖的问候。<strong>把注意力放在这些微小却真实存在的美好上</strong>，它们会慢慢积攒成心里的光。</p>
+                    <p>今晚睡觉前想一件今天还算顺心的小事就行。不用多宏大，路边看到一只猫也算，外卖好吃了也算。大脑会记住这些东西的，积少成多。</p>
                 </div>
             </section>
 
@@ -230,48 +225,42 @@ $assessmentName = $result['assessment_name'] ?? ($assessmentConfig ? $assessment
                 <div class="hm-main-card hm-caring">
                     <div class="hm-card-inner">
                         <div class="hm-badge">🫂 此刻的你</div>
-                        <h2 class="hm-title">谢谢你愿意在这里，让我们陪你一会儿</h2>
+                        <h2 class="hm-title">辛苦了，真的</h2>
                         <p class="hm-text">
-                            我知道，走到这一步可能并不容易。也许你犹豫过，也许你不确定是否该打开这份报告。
-                            但你还是来了，<strong>这说明你内心深处有一股不想放弃自己的力量</strong>——
-                            那股力量或许现在还很小，但它一直在那里，从来没有离开过。
-                            这一次的测评结果只是一个数字，它不能定义你是谁，
-                            也不能预言你会变成什么样的人。它只是一张地图上的一个点，
-                            而你的人生，是一整片辽阔的海域。
+                            我不知道你经历了什么才打开这份报告。但光是点进来这一步，就已经说明你没打算放弃自己。<br><br>
+                            这个分数看起来不太好。但我要说的是：<strong>它描述的是你这段时间的感受，而不是你这个人</strong>。<br><br>
+                            很多人看到高分就会慌，觉得自己是不是"坏了"。没有。你只是现在过得比较难，而"难"和"坏"是两码事。
                         </p>
                     </div>
                 </div>
                 <div class="hm-perspective">
                     <div class="hm-persp-icon">💝</div>
                     <div class="hm-persp-body">
-                        <h4>关于这个分数，我想郑重地告诉你</h4>
+                        <h4>几件事，希望你记住</h4>
                         <ul>
-                            <li><strong>这个数字≠你的人</strong>。它只记录了某段时间某些方面的感受，而你是一个完整、复杂、充满可能性的人。</li>
-                            <li>困难的感觉是真实的，但它<strong>不是永恒的</strong>。无数人在经历过类似时刻后，都找到了属于自己的出路。</li>
-                            <li>你不需要立刻「变好」。允许自己暂时不好，本身就是一种对自己的温柔。<strong>休息也是前进的一部分。</strong></li>
-                            <li>如果此刻觉得孤单，请记得：<strong>寻求帮助不是示弱，而是选择不再独自承担</strong>。这是非常勇敢的决定。</li>
+                            <li>这个数字不会永远停在这个位置。情绪有它的周期，再糟糕的时候也会过去——虽然现在听起来像句空话，但它是事实。</li>
+                            <li>你不必今天就好起来。甚至不必这周就"变正常"。允许自己在坑里趴一会儿，这不叫认输。</li>
+                            <li>如果一个人扛着太累了，找人帮忙不丢人。找朋友、找家人、找专业的人都行。关键是别一个人闷着硬扛。</li>
                         </ul>
                     </div>
                 </div>
                 <div class="hm-glow-grid">
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">🔥</span>
-                        <div><strong>勇气</strong><br>直面内心的真实感受需要巨大的力量，而你刚刚做到了这一点。</div>
+                        <div><strong>你还在这儿</strong><br>能撑到现在、还能来看这个报告，说明你身上有股劲儿还没用完。它可能很小，但它存在。</div>
                     </div>
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">🌊</span>
-                        <div><strong>韧性</strong><br>你能扛住这么多还能来到这里，说明你的内在比你想象的更坚韧。</div>
+                        <div><strong>比你以为的要强</strong><br>人在低谷的时候容易把自己看扁了。但你能扛住这么多事还站在这里，本身就说明了一件事。</div>
                     </div>
                     <div class="hm-glow-item">
                         <span class="hm-glow-icon">💎</span>
-                        <div><strong>不可替代</strong><br>这个世界只有一个你。你的经历、感受、思考方式，都是独一无二的礼物。</div>
+                        <div><strong>你有选择的余地</strong><br>求助也好、休息也好、哭一场也好——这些都是选项，不是退路。选哪个都不丢人。</div>
                     </div>
                 </div>
                 <div class="hm-promise">
                     <div class="hm-promise-label">💌 给自己的一份小约定</div>
-                    <p>今天，先不做任何「应该」做的事。只做一件让你感到安全或平静的小事：
-                        盖着毯子发呆也可以，给信任的人发一句「最近有点累」也好。
-                        <strong>你不需要立刻好起来，你只需要知道——有人希望你好好的，而那个人首先应该是你自己。</strong></p>
+                    <p>今天就放过自己吧。不做任何需要"努力"的事。躺着刷手机也行，给好朋友发条消息说"最近不太行"也行。今晚的目标只有一个：<strong>让自己稍微舒服一点</strong>，别的以后再说。</p>
                 </div>
             </section>
             <?php endif; ?>

@@ -65,23 +65,23 @@ class AssessmentManager {
         
         if ($totalScore <= 4) {
             $level = 'minimal'; $levelName = '无/极轻度'; $levelColor = '#4CAF50';
-            $description = '您目前的心理健康状况良好，没有明显的抑郁症状。建议保持健康的生活方式。';
+            $description = '看起来没什么问题，状态还不错。继续保持就行。';
             $recommendation = ['保持规律作息和适度运动','与家人朋友保持良好社交联系','定期进行心理健康自我监测'];
         } elseif ($totalScore <= 9) {
             $level = 'mild'; $levelName = '轻度'; $levelColor = '#8BC34A';
-            $description = '您存在轻度抑郁症状，可能对日常生活有一定影响，但通过适当自我调节通常可改善。';
+            $description = '有一些轻微的抑郁倾向，日常生活可能偶尔受影响。多出去走走、找人聊聊天，大部分情况下会好转。';
             $recommendation = ['增加户外活动和体育锻炼(每周至少3次)','保证充足睡眠，建立规律作息','与信任的人分享感受','减少酒精和咖啡因摄入'];
         } elseif ($totalScore <= 14) {
             $level = 'moderate'; $levelName = '中度'; $levelColor = '#FF9800';
-            $description = '您存在中度抑郁症状，可能正在对工作学习和人际关系产生明显影响。建议尽快寻求专业帮助。';
+            $description = '抑郁症状已经比较明显了，工作、学习或人际关系可能都受到了影响。这个阶段靠自己扛会吃力，建议去找专业人士聊聊。';
             $recommendation = ['建议预约专业心理咨询师进行评估','考虑认知行为疗法(CBT)','不要独自承受，向亲友倾诉'];
         } elseif ($totalScore <= 19) {
             $level = 'moderately-severe'; $levelName = '中重度'; $levelColor = '#FF5722';
-            $description = '您存在中重度抑郁症状，可能严重干扰日常生活功能。请务必尽快寻求精神科医生帮助。';
+            $description = '症状已经比较严重了，日常生活的不少方面可能都受到了干扰。建议尽快去医院的精神科或心理科看看，别拖。';
             $recommendation = ['请尽快前往医院精神科就诊','可能需要药物配合心理咨询','如有自伤想法立即拨打热线400-161-9995'];
         } else {
             $level = 'severe'; $levelName = '重度'; $levelColor = '#F44336';
-            $description = '测试结果显示重度抑郁症状，这是一个需要认真对待的情况，请立即寻求专业医疗帮助。';
+            $description = '分数比较高，这个情况需要认真对待。建议尽快去医院就诊，不要一个人硬扛。如果情况紧急，直接拨打下面的热线。';
             $recommendation = ['立即前往医院精神科就诊','拨打24小时心理援助热线400-161-9995','紧急情况或有自伤风险请立即拨打120或110'];
         }
 
@@ -126,19 +126,19 @@ class AssessmentManager {
 
         if ($totalScore <= 4) {
             $level = 'minimal'; $levelName = '无/极轻度'; $levelColor = '#4CAF50';
-            $description = '您的焦虑水平在正常范围内。偶尔的紧张是正常的情绪反应。';
+            $description = '焦虑水平在正常范围，没什么好担心的。偶尔紧张是个人都会有的反应。';
             $recommendation = ['继续保持健康的应对压力的方式','尝试正念冥想或深呼吸练习','保持规律的运动习惯'];
         } elseif ($totalScore <= 9) {
             $level = 'mild'; $levelName = '轻度'; $levelColor = '#8BC34A';
-            $description = '您存在轻度焦虑症状。适当的自我调节可以帮助缓解。';
+            $description = '有一些轻度焦虑的迹象，但还不算严重。减少咖啡因、多运动、保证睡眠，这些都能帮上忙。';
             $recommendation = ['学习并实践渐进式肌肉放松','限制咖啡因和酒精摄入','建立规律的睡眠时间表'];
         } elseif ($totalScore <= 14) {
             $level = 'moderate'; $levelName = '中度'; $levelColor = '#FF9800';
-            $description = '您存在中度焦虑症状，这些症状可能正在影响您的日常生活质量。建议寻求专业帮助。';
+            $description = '焦虑已经到了中等的程度，可能开始影响到日常生活了。这个阶段光靠自己调节会比较吃力，建议找心理咨询师聊聊。';
             $recommendation = ['建议咨询心理咨询师了解焦虑管理技巧','考虑学习认知行为疗法(CBT)','记录焦虑日记帮助识别触发因素'];
         } else {
             $level = 'severe'; $levelName = '重度'; $levelColor = '#F44336';
-            $description = '您存在重度焦虑症状，已经显著影响了您的生活功能，强烈建议尽快寻求专业医疗帮助。';
+            $description = '焦虑症状比较重了，生活各方面可能都受到了明显影响。这个程度建议去看医生或心理咨询师，药物配合心理治疗效果通常不错。';
             $recommendation = ['请尽快前往医院心理科或精神科就诊','医生可能会建议药物治疗配合心理治疗','不要独自承受，告诉信任的人您的状况'];
         }
 
@@ -185,15 +185,15 @@ class AssessmentManager {
 
         if ($totalScore <= 13) {
             $level = 'low'; $levelName = '低压力'; $levelColor = '#4CAF50';
-            $description = '您的感知压力水平较低，说明您能够较好地适应生活挑战。继续保持！';
+            $description = '压力水平不高，你应对得还不错。继续保持目前的生活节奏和方式就好。';
             $recommendation = ['保持当前的健康生活方式','继续使用有效的压力管理策略','定期进行自我关怀活动'];
         } elseif ($totalScore <= 26) {
             $level = 'moderate'; $levelName = '中等压力'; $levelColor = '#FF9800';
-            $description = '您感知到中等程度的压力。虽然还能应付，但长期如此会影响身心健康。';
+            $description = '压力处于中等水平，目前还能应付。但如果长期维持这个状态，身体和心理迟早会发出抗议信号——所以趁现在还可以调整一下。';
             $recommendation = ['学习时间管理和优先级设定','增加体育锻炼，每周至少150分钟','尝试正念冥想或瑜伽','确保充足的睡眠(7-9小时)'];
         } else {
             $level = 'high'; $levelName = '高感知压力'; $levelColor = '#F44336';
-            $description = '您的感知压力水平很高。这可能严重影响身心健康，强烈建议采取行动减压。';
+            $description = '压力很大了，这个程度下身心健康都容易出问题。认真想想哪些事情可以放一放、哪些可以说"不"，别什么都自己扛着。';
             $recommendation = ['认真审视生活优先级，学会说"不"','考虑寻求专业的压力管理指导','建立固定的放松仪式(如睡前冥想)','如果感到不堪重负，请及时求助'];
         }
 
@@ -233,16 +233,16 @@ class AssessmentManager {
 
         if ($totalScore <= 3) {
             $level = 'low'; $levelName = '低孤独感'; $levelColor = '#4CAF50';
-            $description = '您的孤独感水平很低，说明您拥有良好的社交支持和人际关系。';
+            $description = '孤独感不高，你身边应该有人可以说话、有事可以做。挺好的，保持住。';
             $recommendation = ['珍惜和维护现有的人际关系','主动关心身边的人','保持开放的沟通态度'];
         } elseif ($totalScore <= 6) {
             $level = 'moderate'; $levelName = '中等孤独感'; $levelColor = '#FF9800';
-            $description = '您体验到了一定程度的孤独感。这是现代人常见的感受，可以通过积极行动来改善。';
+            $description = '有一些孤独感，这其实挺常见的——很多人都有，只是不太会说出口。试着多联系几个老朋友，或者找个兴趣小组加入看看。';
             $recommendation = ['尝试参加感兴趣的社团或活动','主动联系许久未见的朋友或家人','减少社交媒体的使用时间，增加面对面交流'];
         } else {
             $level = 'high'; $levelName = '高孤独感'; $levelColor = '#EF4444';
-            $description = '您报告了较高的孤独感。持续的孤独感可能与心理健康问题相关，建议重视这一点。';
-            $recommendation = ['考虑加入互助小组或社区组织','如果孤独感伴随抑郁症状，请寻求专业帮助','培养兴趣爱好以创造社交机会','记住: 感到孤独并不代表你真的孤单'];
+            $description = '孤独感比较强了。这种感觉如果持续太久，确实容易影响到心情和生活质量。值得认真对待一下。';
+            $recommendation = ['考虑加入互助小组或社区组织','如果孤独感伴随抑郁症状，请寻求专业帮助','培养兴趣爱好以创造社交机会','感到孤独不丢人，很多人都在经历同样的事'];
         }
 
         return [
@@ -284,15 +284,15 @@ class AssessmentManager {
 
         if ($totalScore <= 11) {
             $level = 'low'; $levelName = '低社交焦虑'; $levelColor = '#4CAF50';
-            $description = '您的社交焦虑水平正常。在大多数社交场合中都能感到自在。';
+            $description = '社交焦虑在正常范围，大部分人都会有的水平。没什么需要特别处理的。';
             $recommendation = ['继续保持积极的社交态度','可以适当走出舒适圈尝试新事物'];
         } elseif ($totalScore <= 20) {
             $level = 'moderate'; $levelName = '中等社交焦虑'; $levelColor = '#FF9800';
-            $description = '您在某些社交场合中会感到不适。这种程度的焦虑是可以理解和改善的。';
+            $description = '在某些社交场合会感到紧张或不自在，这种程度很多人都有。可以试着从小型、安全的社交场景开始慢慢适应。';
             $recommendation = ['逐步暴露疗法：从小型安全场合开始练习','准备一些开场白话题以减轻尴尬','如果影响到日常生活，考虑寻求专业帮助'];
         } else {
             $level = 'high'; $levelName = '高社交焦虑'; $levelColor = '#8B5CF6';
-            $description = '您报告了较高水平的社交焦虑。这可能显著影响您的社交生活和职业发展。';
+            $description = '社交焦虑比较明显了，可能已经影响到了你的社交生活和工作的某些方面。如果觉得困扰比较大，建议找专业人士聊聊，CBT对社交焦虑效果不错。';
             $recommendation = ['强烈建议寻求认知行为疗法(CBT)治疗','学习并练习社交技能','了解社交焦虑障碍的相关知识','参加社交焦虑支持小组'];
         }
 
@@ -342,20 +342,20 @@ class AssessmentManager {
 
         if ($totalScore >= 31) {
             $level = 'high'; $levelName = '高自尊'; $levelColor = '#4CAF50';
-            $description = '您具有较高的自尊水平。您对自己有积极的看法和自信的态度。';
+            $description = '自我评价不错，对自己基本是认可的。保持住，这种自信会在很多事情上帮到你。';
             $recommendation = ['继续保持积极的自我对话','用自己的优势去帮助他人','设定具有挑战性但可实现的目标'];
         } elseif ($totalScore >= 21) {
             $level = 'normal'; $levelName = '正常范围'; $levelColor = '#8BC34A';
-            $description = '您的自尊水平在正常范围内。大部分时候您对自己有合理的评价。';
+            $description = '自我评价在正常范围内，对自己有比较客观的认识。不盲目自信也不妄自菲薄，这个状态其实挺好的。';
             $recommendation = ['关注自己的优点和成就','接纳不完美的部分也是成长的一部分','与支持你的人保持联系'];
         } elseif ($totalScore >= 15) {
             $level = 'low'; $levelName = '偏低自尊'; $levelColor = '#FF9800';
-            $description = '您的自尊水平偏低。您可能经常怀疑自己的价值和能力。';
+            $description = '自我评价偏低一些，可能经常觉得自己不够好或者不太行。这种想法会影响到很多选择和决定。';
             $recommendation = ['练习积极的肯定语句和自我对话','列出自己的优点和过去的成就','避免与他人做不公平的比较'];
         } else {
             $level = 'very_low'; $levelName = '低自尊'; $levelColor = '#EC4899';
-            $description = '您的自尊水平较低。这可能影响了您的生活满意度和决策。请记住，自尊是可以提升的。';
-            $recommendation = ['强烈建议寻求专业心理咨询的帮助','学习认知重构技巧来改变消极思维模式','从小目标开始积累成功经验','记住: 您的价值不由外界评价定义'];
+            $description = '自我评价偏低，可能已经在影响生活满意度了。长期这样下去容易陷入恶性循环。值得认真对待。';
+            $recommendation = ['强烈建议寻求专业心理咨询的帮助','学习认知重构技巧来改变消极思维模式','从小目标开始积累成功经验','你的价值不取决于别人怎么看你，也不取决于你做成了多少事'];
         }
 
         $negScore = (int)$answers[2] + (int)$answers[4] + (int)$answers[7] + (int)$answers[8] + (int)$answers[9];
