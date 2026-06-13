@@ -158,7 +158,7 @@ $questionCount = count($questions);
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'X-CSRF-Token': '<?php echo csrf_token(); ?>'
                     },
-                    body: 'assessment_type=<?php echo json_encode($assessmentType); ?>&answers=' + JSON.stringify(answers) + '&duration=' + duration + '&csrf_token=<?php echo csrf_token(); ?>'
+                    body: 'assessment_type=<?php echo urlencode($assessmentType); ?>&answers=' + JSON.stringify(answers) + '&duration=' + duration + '&csrf_token=<?php echo csrf_token(); ?>'
                 });
                 const json = await res.json();
                 if (json.success) {

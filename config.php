@@ -67,7 +67,7 @@ class Database {
         try {
             $this->connection = new PDO('sqlite:' . DB_FILE);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::ATTR_ASSOC);
+            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
             // 启用外键约束（SQLite默认关闭）
             $this->connection->exec('PRAGMA foreign_keys = ON');
